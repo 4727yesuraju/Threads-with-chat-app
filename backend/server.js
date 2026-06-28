@@ -8,7 +8,7 @@ import postRoutes from "./routes/postRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import { v2 as cloudinary } from "cloudinary";
 import { app, server } from "./socket/socket.js";
-import job from "./cron/cron.js";
+// import job from "./cron/cron.js";
 
 dotenv.config();
 
@@ -36,12 +36,12 @@ app.use("/api/messages", messageRoutes);
 
 // http://localhost:5000 => backend,frontend
 
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-	// react app
-	app.get("*", (req, res) => {
-		res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-	});
+// react app
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 
 server.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
